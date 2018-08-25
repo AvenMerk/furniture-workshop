@@ -1,3 +1,48 @@
+let catalogFetch;
+let categoryFetch;
+
+fetch('https://furniture-service.herokuapp.com/product')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        catalogFetch = data;
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  }
+);
+
+fetch('https://furniture-service.herokuapp.com/category')
+  .then(
+    function(response) {
+      if (response.status !== 200) {
+        console.log('Looks like there was a problem. Status Code: ' +
+          response.status);
+        return;
+      }
+
+      // Examine the text in the response
+      response.json().then(function(data) {
+        categoryFetch = data;
+        console.log(data);
+      });
+    }
+  )
+  .catch(function(err) {
+    console.log('Fetch Error :-S', err);
+  }
+);
+
 export const setVisibilityFilter = filter => ({
   type: 'SET_VISIBILITY_FILTER',
   filter
@@ -11,69 +56,10 @@ export const VisibilityFilters = {
 
 export const addJson = () => ({
   type: 'ADD_JSON',
-  json:[
-    {
-      id: 1,
-      name: "Кровать",
-      creation_time: "2018-07-30T09:54:50.34746Z",
-      category_id: 1,
-      price: "11.1"
-    },
-    {
-      id: 2,
-      name: "Диван",
-      creation_time: "2018-07-30T09:54:50.494292Z",
-      category_id: 1,
-      price: "11.2"
-    },
-    {
-      id: 3,
-      name: "Кресло",
-      creation_time: "2018-07-30T09:54:50.625694Z",
-      category_id: 1,
-      price: "11.3"
-    },
-    {
-      id: 4,
-      name: "Шкаф",
-      creation_time: "2018-07-30T09:54:50.771221Z",
-      category_id: 2,
-      price: "12.1"
-    },
-    {
-      id: 5,
-      name: "Тумба",
-      creation_time: "2018-07-30T09:54:50.928313Z",
-      category_id: 2,
-      price: "12.2"
-    },
-    {
-      id: 6,
-      name: "Полки",
-      creation_time: "2018-07-30T09:54:51.088874Z",
-      category_id: 2,
-      price: "12.3"
-    },
-    {
-      id: 7,
-      name: "Стол",
-      creation_time: "2018-07-30T09:54:51.234638Z",
-      category_id: 3,
-      price: "13.1"
-    },
-    {
-      id: 8,
-      name: "Стул",
-      creation_time: "2018-07-30T09:54:51.419259Z",
-      category_id: 3,
-      price: "13.2"
-    },
-    {
-      id: 9,
-      name: "Кресло-качалка",
-      creation_time: "2018-07-30T09:54:51.549766Z",
-      category_id: 3,
-      price: "13.3"
-    }
-  ]
-})
+  json: catalogFetch
+});
+
+export const addCategoryButtons = () => ({
+  type: 'ADD_CATEGORY_BUTTONS',
+  json: categoryFetch
+});

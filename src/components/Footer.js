@@ -1,20 +1,13 @@
-import React from 'react'
-import FilterLink from '../containers/FilterLink'
-import { VisibilityFilters } from '../actions'
+import React from 'react';
 
 const Footer = () => (
-  <div>
-    <span>Show: </span>
-    <FilterLink filter={VisibilityFilters.SHOW_ALL}>
-      All
-    </FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>
-      Active
-    </FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>
-      Completed
-    </FilterLink>
-  </div>
-)
+    <footer>
+        <div className="option__text">
+            <p>-----------------------------</p>
+            <p>My profile, git etc</p>
+        </div>
 
-export default Footer
+    </footer>
+);
+
+export default Footer;
